@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Phishing Quiz</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    #link-url {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      display: none;
+    }
+  </style>
 </head>
 <body>
   <div class="quiz-container">
@@ -26,7 +38,10 @@
     <main id="quiz" style="display: none;">
       <div id="question-container">
         <h2 id="question">Question 1: Is this email real or fake?</h2>
-        <img src="https://prophish-uploads.s3.ap-south-1.amazonaws.com/Wallpapers//Aditya%20Birla%20Capital%20Banner%20Image_page-0001%20%283%29.jpg" alt="Email Example" id="email-image">
+
+        <!-- Instead of an image, we will use HTML code for the email template -->
+        <div id="email-template-container"></div>  <!-- Placeholder for email template -->
+
         <div class="answers">
           <button class="answer" onclick="checkAnswer(true)">Real</button>
           <button class="answer" onclick="checkAnswer(false)">Fake</button>
@@ -47,6 +62,10 @@
       </div>
     </main>
   </div>
+  
+  <!-- URL Display in Bottom Left -->
+  <div id="link-url"></div>
+
   <script src="script.js"></script>
 </body>
 </html>
