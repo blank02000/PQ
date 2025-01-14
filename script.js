@@ -1,13 +1,27 @@
 const questions = [
     {
-      image: "https://prophish-uploads.s3.ap-south-1.amazonaws.com/Wallpapers//Aditya%20Birla%20Capital%20Banner%20Image_page-0001%20%283%29.jpg",
+      emailTemplate: `
+        <div style="background-color: #f9f9f9; padding: 20px; border: 1px solid #ddd;">
+          <h3 style="color: #007bff;">Welcome to Our Newsletter!</h3>
+          <p>Dear Customer,</p>
+          <p>We are excited to announce our latest offer! Click the link below to claim your discount.</p>
+          <a href="http://example.com" style="color: #007bff;" class="email-link">Claim your offer now</a>
+          <p>Best regards, <br> The Team</p>
+        </div>`,
       correct: false,
-      feedback: "This email is fake! Look at the sender's address and grammar."
+      feedback: "This email is fake! Look at the sender's address and the generic message."
     },
     {
-      image: "images/sample-email2.jpg",
+      emailTemplate: `
+        <div style="background-color: #f9f9f9; padding: 20px; border: 1px solid #ddd;">
+          <h3 style="color: #28a745;">Your Invoice is Ready</h3>
+          <p>Dear John Doe,</p>
+          <p>Your payment of $150.00 has been processed successfully. Find your invoice below.</p>
+          <a href="http://example.com/invoice" style="color: #007bff;" class="email-link">Download Invoice</a>
+          <p>Best regards, <br> Company Name</p>
+        </div>`,
       correct: true,
-      feedback: "This email is real. Notice the professional formatting."
+      feedback: "This email is real! The invoice link is legitimate and formatted professionally."
     }
   ];
   
@@ -28,7 +42,7 @@ const questions = [
   
   function loadQuestion() {
     const questionData = questions[currentQuestion];
-    document.getElementById("email-image").src = questionData.image;
+    document.getElementById("email-template-container").innerHTML = questionData.emailTemplate;
     document.getElementById("question").textContent = `Question ${currentQuestion + 1}: Is this email real or fake?`;
   
     // Update the "Next Question" button to "Result" if on the last question
@@ -38,6 +52,25 @@ const questions = [
     } else {
       nextButton.textContent = "Next Question";
     }
+  
+    // Add event listener for links inside the email template
+    const links = document.querySelectorAll('.email-link');
+    links.forEach(link => {
+      link.addEventListener('click', displayLinkUrl);
+    });
+  }
+  
+  function displayLinkUrl(event) {
+    // Prevent the default link behavior (e.g., redirecting the user)
+    event.preventDefault();
+  
+    // Get the destination URL of the clicked link
+    const linkUrl = event.target.href;
+  
+    // Display the link URL in the bottom-left corner
+    const linkUrlDisplay = document.getElementById("link-url");
+    linkUrlDisplay.textContent = `This link would go to: ${linkUrl}`;
+    linkUrlDisplay.style.display = "block";
   }
   
   function checkAnswer(isReal) {
