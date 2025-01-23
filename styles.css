@@ -56,7 +56,7 @@ header p {
 #email-form input[type="email"] {
   padding: 10px;
   font-size: 1rem;
-  width: 100%;
+  width: 99%;
   max-width: 300px; /* Limit the width */
   border: 1px solid #ccc;
   border-radius: 5px;
