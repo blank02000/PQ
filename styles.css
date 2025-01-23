@@ -1,48 +1,221 @@
+/* Global Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f9;
-  }
-  
+  font-family: 'Roboto', Arial, sans-serif; /* Clean and modern font */
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #007BFF, #00C9FF); /* Background gradient */
+  color: #333;
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Quiz Container */
+.quiz-container {
+  background: #ffffff; /* White background for the quiz container */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  max-width: 700px; /* Maximum width of the quiz */
+  width: 90%; /* Responsive width */
+  padding: 30px;
+  box-sizing: border-box; /* Include padding in width calculation */
+  animation: fadeIn 0.5s ease-in-out; /* Smooth fade-in animation */
+}
+
+/* Header Section */
+header {
+  text-align: center; /* Center the header text */
+}
+
+header h1 {
+  font-size: 2.5rem; /* Larger title font */
+  color: #007BFF; /* Blue color for the title */
+  margin-bottom: 10px; /* Space below title */
+}
+
+header p {
+  font-size: 1.1rem; /* Smaller font for the description */
+  color: #555;
+}
+
+/* Email Form Section */
+#email-form-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#email-form label {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+#email-form input[type="email"] {
+  padding: 10px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px; /* Limit the width */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+#email-form button {
+  padding: 10px 20px;
+  background-color: #007BFF; /* Blue background for the button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth color change on hover */
+}
+
+#email-form button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Quiz Section */
+main#quiz {
+  display: none; /* Initially hide the quiz section */
+  margin-top: 30px;
+}
+
+/* Question Container */
+#question-container {
+  text-align: center;
+}
+
+#question-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #007BFF; /* Blue for the question title */
+}
+
+#email-template-container {
+  background: #f9f9f9;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.answers button {
+  padding: 15px 30px;
+  background-color: #28a745; /* Green button for 'Real' */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  margin: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.answers button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.answers button:nth-child(2) {
+  background-color: #dc3545; /* Red button for 'Fake' */
+}
+
+.answers button:nth-child(2):hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+/* Feedback Section */
+#feedback {
+  text-align: center;
+  display: none; /* Initially hide feedback section */
+  margin-top: 20px;
+}
+
+#feedback-text {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+#feedback button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#feedback button:hover {
+  background-color: #0056b3;
+}
+
+/* End Screen */
+#end-screen {
+  text-align: center;
+  display: none; /* Initially hide end screen */
+}
+
+#end-screen h2 {
+  font-size: 2rem;
+  color: #007BFF;
+}
+
+#end-screen p {
+  font-size: 1.1rem;
+}
+
+/* URL Display (Bottom Left) */
+#link-url {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  display: none;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
   .quiz-container {
-    background: #fff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 90%;
-    max-width: 500px;
   }
-  
-  h1 {
-    color: #333;
+
+  header h1 {
+    font-size: 2rem; /* Smaller title for mobile */
   }
-  
+
+  header p {
+    font-size: 1rem;
+  }
+
+  #email-form input[type="email"] {
+    max-width: 100%; /* Full width on mobile */
+  }
+
   .answers button {
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    width: 100%; /* Full width for answer buttons */
+    margin: 10px 0;
   }
-  
-  .answers button:hover {
-    background-color: #0056b3;
+
+  #feedback button {
+    width: 100%; /* Full width for next button */
   }
-  
-  #feedback, #end-screen {
-    display: none;
+}
+
+/* Animation for fading in content */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
   }
-  
-  img {
-    max-width: 100%;
-    margin: 20px 0;
+  100% {
+    opacity: 1;
   }
-  
+}
