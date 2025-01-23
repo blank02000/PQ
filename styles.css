@@ -168,6 +168,42 @@ main#quiz {
 #end-screen p {
   font-size: 1.1rem;
 }
+/* Link Popup */
+.link-popup {
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid #007BFF;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  position: relative;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  z-index: 10;
+}
+
+.link-popup p {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.link-popup button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.link-popup button:hover {
+  background-color: #0056b3;
+}
+
 
 /* URL Display (Bottom Left) */
 #link-url {
