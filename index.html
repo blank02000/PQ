@@ -5,61 +5,134 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Phishing Quiz</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    .quiz-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      color: #007bff;
+    }
+
+    .answers button {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .answers button:hover {
+      background-color: #0056b3;
+      color: white;
+    }
+
+    /* Link Popup */
+    #link-popup {
+      display: none;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border: 1px solid #ddd;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      width: 80%;
+      max-width: 500px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    #link-popup p {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    #link-popup button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #link-popup button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
   <div class="quiz-container">
     <header>
       <h1>Phishing Quiz</h1>
-      <p>Test your skills in spotting phishing emails!</p>
+      <p>Can you spot the fake emails?</p>
     </header>
-
+    
     <!-- Email Form Section -->
     <section id="email-form-container">
       <form id="email-form" onsubmit="startQuiz(event)">
-        <label for="email">Enter your email to start:</label>
+        <label for="email">Enter your email to start the quiz:</label>
         <input type="email" id="email" name="email" required placeholder="yourname@example.com">
         <button type="submit">Start Quiz</button>
       </form>
     </section>
-
+    
     <!-- Quiz Section -->
     <main id="quiz" style="display: none;">
-      <!-- Inside <main id="quiz"> -->
-<div class="question-card">
-  <h2 id="question">Question 1: Is this email real or fake?</h2>
-  <div id="email-template-container"></div>
+      <div id="question-container">
+        <h2 id="question">Question 1: Is this email real or fake?</h2>
+        <div id="email-template-container"></div>
+        <div class="answers">
+          <button class="answer" onclick="checkAnswer(true)">Real</button>
+          <button class="answer" onclick="checkAnswer(false)">Fake</button>
+        </div>
+      </div>
+      
+      <!-- Feedback Display -->
+      <div id="feedback" style="display: none;">
+        <p id="feedback-text"></p>
+        <button onclick="nextQuestion()">Next Question</button>
+      </div>
+      
+      <!-- Link Popup -->
+      <div id="link-popup">
+        <p id="link-popup-text"></p>
+        <button onclick="closeLinkPopup()">Close</button>
+      </div>
 
-  <div class="answers">
-    <button class="answer" onclick="checkAnswer(true)">Real</button>
-    <button class="answer" onclick="checkAnswer(false)">Fake</button>
-  </div>
-
-  <!-- New Popup Area -->
-  <div id="link-popup" class="link-popup" style="display: none;">
-    <p id="link-popup-text"></p>
-    <button onclick="closeLinkPopup()">Close</button>
-  </div>
-
-  <div class="progress">
-    <div id="progress-bar"></div>
-  </div>
-</div>
-
+      <!-- End Screen -->
+      <div id="end-screen" style="display: none;">
+        <h2>Quiz Complete!</h2>
+        <p>You got <span id="score">0</span> out of <span id="total-questions">0</span> correct.</p>
+        <p>Tips: Always check the sender's address and avoid clicking suspicious links!</p>
+      </div>
     </main>
-
-    <!-- Feedback Display -->
-    <div id="feedback" style="display: none;">
-      <p id="feedback-text"></p>
-      <button onclick="nextQuestion()">Next Question</button>
-    </div>
-
-    <!-- End Screen -->
-    <div id="end-screen" style="display: none;">
-      <h2>Quiz Complete!</h2>
-      <p>You got <span id="score">0</span> out of <span id="total-questions">0</span> correct.</p>
-      <p>Tips: Always check the sender's address and avoid clicking suspicious links!</p>
-      <button onclick="restartQuiz()">Try Again</button>
-    </div>
   </div>
 
   <script src="script.js"></script>
